@@ -8,9 +8,12 @@ const literal1 = {
   },
   addString: function (newStr) {
     // ... code ...
+    this.nanys.push(newStr);
   },
   all: function (selection) {
     // ... code ...
+    (selection % 2 === 0) ? this.evens.push(selection) : this.odds.push(selection);
+
   }
 };
 
@@ -22,16 +25,48 @@ const literal2 = {
   },
   addString: function (newStr) {
     // ... code ...
+    isNaN(newStr) ? this.state.nanys.push(newStr) : ((Number(newStr % 2 === 0)) ? this.state.evens.push(newStr) : this.state.odds.push(newStr));
+
   },
   all: function (selection) {
+
     // ... code ...
+    return selection === 'evens' ? this.state.evens : ((selection === 'odds') ? this.state.odds : this.state.nanys);
+
   }
 };
 
 // the solution
+class Stringanizer {
+  state = {
+    evens: [],
+    odds: [],
+    nanys: []
+  };
+  constructor(evens, odds, nanys) {
 
+    this.state.evens = evens;
+    this.state.odds = odds;
+    this.state.nanys = nanys;
+  }
+  addString(newStr) {
+    // ... code ...
+    isNaN(newStr) ? this.state.nanys.push(newStr) : ((Number(newStr % 2 === 0)) ? this.state.evens.push(newStr) : this.state.odds.push(newStr));
+
+  };
+  all(selection) {
+    // ... code ...
+    return selection === 'evens' ? this.state.evens : ((selection === 'odds') ? this.state.odds : this.state.nanys);
+
+
+  }
+
+}
 
 // the tests
+debugger;
+const instanceA = new Stringanizer(["2", ""], ["3"], ["e"]);
+const instanceB = new Stringanizer(["-0"], ["5"], ["!"]);
 
 const test1a = instanceA instanceof Stringanizer;
 const test1b = instanceB instanceof Stringanizer;
