@@ -8,12 +8,12 @@ const literal1 = {
   },
   addString: function (newStr) {
     // ... code ...
-    this.nanys.push(newStr);
+    isNaN(newStr) ? this.state.nanys.push(newStr) : ((Number(newStr % 2 === 0)) ? this.state.evens.push(newStr) : this.state.odds.push(newStr));
+
   },
   all: function (selection) {
     // ... code ...
-    (selection % 2 === 0) ? this.evens.push(selection) : this.odds.push(selection);
-
+    return this.state[selection];
   }
 };
 
@@ -30,9 +30,7 @@ const literal2 = {
   },
   all: function (selection) {
 
-    // ... code ...
-    return selection === 'evens' ? this.state.evens : ((selection === 'odds') ? this.state.odds : this.state.nanys);
-
+    return this.state[selection];
   }
 };
 
@@ -56,8 +54,7 @@ class Stringanizer {
   };
   all(selection) {
     // ... code ...
-    return selection === 'evens' ? this.state.evens : ((selection === 'odds') ? this.state.odds : this.state.nanys);
-
+    return this.state[selection];
 
   }
 
